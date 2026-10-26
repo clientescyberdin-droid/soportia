@@ -6,7 +6,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 85,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d59e518ef.jpg"
  },
  {
   "id": "d42178cd8",
@@ -15,7 +15,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 80,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d42178cd8.jpg"
  },
  {
   "id": "df530a064",
@@ -24,7 +24,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 80,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/df530a064.jpg"
  },
  {
   "id": "d0f477d83",
@@ -33,7 +33,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 450,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d0f477d83.jpg"
  },
  {
   "id": "dc40f3dbb",
@@ -42,7 +42,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 260,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/dc40f3dbb.jpg"
  },
  {
   "id": "dcc3a5c65",
@@ -51,7 +51,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 35,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/dcc3a5c65.jpg"
  },
  {
   "id": "d35aeb145",
@@ -60,7 +60,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 45,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d35aeb145.jpg"
  },
  {
   "id": "dfc0f2d0e",
@@ -69,7 +69,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 45,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/dfc0f2d0e.jpg"
  },
  {
   "id": "d2f879480",
@@ -78,7 +78,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 80,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d2f879480.jpg"
  },
  {
   "id": "d989b828f",
@@ -87,7 +87,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 100,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d989b828f.jpg"
  },
  {
   "id": "db858113b",
@@ -96,7 +96,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 100,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/db858113b.jpg"
  },
  {
   "id": "d9ba4da3e",
@@ -105,7 +105,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 100,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d9ba4da3e.jpg"
  },
  {
   "id": "da189787a",
@@ -114,7 +114,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 100,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/da189787a.jpg"
  },
  {
   "id": "dfb83d15d",
@@ -123,7 +123,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 115,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/dfb83d15d.jpg"
  },
  {
   "id": "d3e138085",
@@ -132,7 +132,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 105,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d3e138085.jpg"
  },
  {
   "id": "d37be8cc1",
@@ -141,7 +141,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 95,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d37be8cc1.jpg"
  },
  {
   "id": "da6772cc4",
@@ -150,7 +150,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 215,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/da6772cc4.jpg"
  },
  {
   "id": "d5a9bcbf8",
@@ -159,7 +159,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 95,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d5a9bcbf8.jpg"
  },
  {
   "id": "d1f1f50d5",
@@ -168,7 +168,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 145,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d1f1f50d5.jpg"
  },
  {
   "id": "d1bc7db33",
@@ -177,7 +177,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 140,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d1bc7db33.jpg"
  },
  {
   "id": "df45ba1e3",
@@ -186,7 +186,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 140,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/df45ba1e3.jpg"
  },
  {
   "id": "df4e43ace",
@@ -195,7 +195,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 300,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/df4e43ace.jpg"
  },
  {
   "id": "d10ded9cd",
@@ -204,7 +204,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 300,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d10ded9cd.jpg"
  },
  {
   "id": "df9de08da",
@@ -213,7 +213,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 220,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/df9de08da.jpg"
  },
  {
   "id": "d692bf722",
@@ -222,7 +222,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 60,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d692bf722.jpg"
  },
  {
   "id": "d7d8754ad",
@@ -231,7 +231,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 40,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d7d8754ad.jpg"
  },
  {
   "id": "d5ecc7749",
@@ -240,7 +240,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 35,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d5ecc7749.jpg"
  },
  {
   "id": "decb42ebc",
@@ -249,7 +249,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 30,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/decb42ebc.jpg"
  },
  {
   "id": "d96c6d1eb",
@@ -258,7 +258,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "MOUSE, TRACKBALL, PUNTEROS",
   "precio": 100,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/d96c6d1eb.jpg"
  },
  {
   "id": "ddcc08db0",
@@ -267,7 +267,7 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 360,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/ddcc08db0.jpg"
  },
  {
   "id": "db03e4e06",
@@ -276,6 +276,6 @@ const PRODUCTOS_DELTRON = [
   "categoria": "TECLADOS",
   "precio": 45,
   "estado": "Por encargo, 3 a 5 días",
-  "foto": null
+  "foto": "fotos/db03e4e06.jpg"
  }
 ];
