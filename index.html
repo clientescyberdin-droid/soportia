@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOPORTIA — tu técnico, al toque</title>
+<style>
+:root{--v:#0F9D58;--vo:#0B6B3A;--t:#1f2933;--m:#5f6b76;--b:#e2e6ea;--bg:#f6f8f7}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--t);background:var(--bg)}
+header{background:var(--v);color:#fff;padding:14px 16px}
+header b{font-size:22px;letter-spacing:.5px}
+header i{display:block;font-size:14px}
+main{max-width:1000px;margin:0 auto;padding:12px 16px 90px}
+#q{width:100%;height:42px;border:1px solid var(--b);border-radius:8px;padding:0 12px;font-size:16px}
+#cats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.chip{border:1px solid var(--b);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer}
+.chip.on{background:var(--v);border-color:var(--v);color:#fff}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.card img,.ph{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:8px;background:#f1f4f2}
+.ph{display:flex;align-items:center;justify-content:center;color:var(--m);font-size:13px}
+.card h3{font-size:15px;margin:4px 0 0;line-height:1.35}
+.meta{font-size:12px;color:var(--m)}
+.pr{font-size:22px;font-weight:600;color:var(--vo)}
+.ref{font-size:12px;color:var(--m);margin-top:-4px}
+.btn{margin-top:auto;display:block;text-align:center;background:var(--v);color:#fff;text-decoration:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600}
+.btn:hover{background:var(--vo)}
+#mas{display:block;margin:16px auto;padding:10px 20px;border:1px solid var(--v);background:#fff;color:var(--vo);border-radius:8px;font-size:15px;cursor:pointer}
+#vacio{text-align:center;color:var(--m);padding:40px 12px}
+small.g{display:block;text-align:center;color:var(--m);margin-top:24px;font-size:13px}
+footer{position:fixed;left:0;right:0;bottom:0;background:var(--v);color:#fff;text-align:center;padding:12px;font-size:14px}
+footer a{color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<header><b>SOPORTIA</b><i>tu técnico, al toque</i></header>
+<main>
+<input id="q" type="search" placeholder="Busca: cable, cargador, mouse, laptop…" aria-label="Buscar productos">
+<div id="cats"></div>
+<div id="grid"></div>
+<div id="vacio" hidden></div>
+<button id="mas" hidden>Ver más productos</button>
+<small class="g">Todo se pide por encargo: te confirmo hoy mismo el precio y la fecha. 7 días de garantía por escrito.</small>
+</main>
+<footer>Pídelo por WhatsApp <a href="https://wa.me/51922436315">922 436 315</a></footer>
+
+<script src="productos-deltron.js"></script>
+<script>
+const WA = "51922436315";
+const datos = (typeof PRODUCTOS_DELTRON !== "undefined") ? PRODUCTOS_DELTRON : [];
+const norm = s => (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const fmt = n => Number(n).toLocaleString("es-PE");
+let cat = "Todos", q = "", max = 48;
+
+function el(tag, cls, txt) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (txt != null) e.textContent = txt;
+  return e;
+}
+
+function tarjeta(p) {
+  const c = el("div", "card");
+  if (p.foto) {
+    const i = el("img");
+    i.src = p.foto; i.alt = p.nombre; i.loading = "lazy";
+    i.onerror = () => i.replaceWith(el("div", "ph", "Foto por WhatsApp"));
+    c.append(i);
+  } else {
+    c.append(el("div", "ph", "Foto por WhatsApp"));
+  }
+  c.append(el("h3", "", p.nombre));
+  c.append(el("div", "meta", [p.marca, p.estado].filter(Boolean).join(" · ")));
+  const caro = p.precio >= 800;
+  c.append(el("div", "pr", (caro ? "desde S/ " : "S/ ") + fmt(p.precio)));
+  if (caro) c.append(el("div", "ref", "Precio referencial, te confirmo hoy"));
+  const a = el("a", "btn", "Pedir por WhatsApp");
+  const msg = "Hola SOPORTIA, quiero pedir: " + p.nombre + " (S/ " + fmt(p.precio) + ")";
+  a.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+  a.target = "_blank"; a.rel = "noopener";
+  c.append(a);
+  return c;
+}
+
+function render() {
+  const lista = datos.filter(p =>
+    (cat === "Todos" || p.categoria === cat) &&
+    (!q || norm([p.nombre, p.marca, p.categoria].join(" ")).includes(q)));
+  document.getElementById("grid").replaceChildren(...lista.slice(0, max).map(tarjeta));
+  document.getElementById("mas").hidden = lista.length <= max;
+  const v = document.getElementById("vacio");
+  v.hidden = lista.length > 0;
+  v.textContent = datos.length
+    ? "No encontré eso. Escríbenos por WhatsApp y te lo consigo."
+    : "Estamos cargando el catálogo. Mientras tanto, escríbenos por WhatsApp y te cotizamos.";
+}
+
+function chips() {
+  const cats = ["Todos", ...new Set(datos.map(p => p.categoria).filter(Boolean))].sort((a, b) =>
+    a === "Todos" ? -1 : b === "Todos" ? 1 : a.localeCompare(b));
+  const box = document.getElementById("cats");
+  box.replaceChildren(...cats.map(n => {
+    const b = el("button", "chip" + (n === cat ? " on" : ""), n);
+    b.onclick = () => { cat = n; max = 48; chips(); render(); };
+    return b;
+  }));
+  box.hidden = cats.length < 3;
+}
+
+document.getElementById("q").oninput = e => { q = norm(e.target.value.trim()); max = 48; render(); };
+document.getElementById("mas").onclick = () => { max += 48; render(); };
+chips();
+render();
+</script>
+</body>
+</html>
