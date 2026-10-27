@@ -19,9 +19,20 @@ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;c
 header{background:var(--v);color:#fff;padding:14px 16px}
 header b{font-size:22px;letter-spacing:.5px}
 header i{display:block;font-size:14px}
-main{max-width:1000px;margin:0 auto;padding:12px 16px 90px}
+main{max-width:1200px;margin:0 auto;padding:12px 16px 90px}
 #q{width:100%;height:42px;border:1px solid var(--b);border-radius:8px;padding:0 12px;font-size:16px}
-#cats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.wrap{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:start}
+aside{position:sticky;top:10px}
+#cats{display:flex;flex-direction:column;gap:2px;max-height:calc(100vh - 90px);overflow:auto;background:#fff;border:1px solid var(--b);border-radius:12px;padding:6px}
+.cat{display:flex;justify-content:space-between;gap:8px;text-align:left;border:0;background:none;padding:8px 10px;border-radius:8px;font-size:13px;cursor:pointer;color:var(--t)}
+.cat:hover{background:#eef6f1}.cat.on{background:var(--v);color:#fff}.cat span{color:var(--m)}.cat.on span{color:#fff}
+#btnCats{display:none}
+.bar{display:flex;gap:8px;margin-bottom:12px;scroll-margin-top:8px}
+#q{flex:1;min-width:0}
+#orden{height:42px;border:1px solid var(--b);border-radius:8px;padding:0 8px;font-size:15px;background:#fff}
+@media(max-width:800px){.wrap{display:block}aside{position:static;margin-bottom:12px}
+#btnCats{display:block;width:100%;height:42px;border:1px solid var(--v);background:#fff;color:var(--vo);border-radius:8px;font-size:15px;font-weight:600}
+#cats{display:none;margin-top:6px;max-height:60vh}#cats.open{display:flex}}
 .chip{border:1px solid var(--b);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer}
 .chip.on{background:var(--v);border-color:var(--v);color:#fff}
 #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
@@ -54,11 +65,16 @@ footer a{color:#fff;font-weight:600}
 <p>Laptops, redes, cámaras y accesorios. Te asesoramos antes de comprar y te ayudamos después.</p>
 <div class="bn"><span>Envíos a todo el Perú</span><span>Pregunta por tu descuento</span><span>7 días de garantía por escrito</span><span>Asesoría por WhatsApp</span></div></section>
 <main>
-<input id="q" type="search" placeholder="Busca: cable, cargador, mouse, laptop…" aria-label="Buscar productos">
-<div id="cats"></div>
+<div class="wrap">
+<aside><button id="btnCats" type="button">Categorías ▾</button><div id="cats"></div></aside>
+<div>
+<div id="top" class="bar"><input id="q" type="search" placeholder="Busca: cable, cargador, mouse, laptop…" aria-label="Buscar productos">
+<select id="orden" aria-label="Ordenar productos"><option value="">Más pedidos</option><option value="asc">Menor precio</option><option value="desc">Mayor precio</option></select></div>
 <div id="grid"></div>
 <div id="vacio" hidden></div>
 <button id="mas" hidden>Ver más productos</button>
+</div>
+</div>
 <section class="how"><h2>Cómo comprar</h2><ol><li><b>Elige</b> tu producto y toca «Pedir por WhatsApp».</li><li><b>Te confirmamos</b> el precio final, tu descuento y el plazo, el mismo día.</li><li><b>Coordinamos el pago y el envío</b> a donde estés.</li></ol></section>
 <small class="g">Todo se pide por encargo: te confirmo hoy mismo el precio y la fecha. 7 días de garantía por escrito.</small>
 </main>
@@ -73,7 +89,7 @@ const fmt = n => Number(n).toLocaleString("es-PE");
 const PRIORIDAD = ["mouse","audio","teclados","redes inalambricas","memorias flash","mochilas","discos duros externos","camaras","notebooks","impresoras","monitores","computadoras"];
 const pesoCat = c => { const i = PRIORIDAD.findIndex(k => norm(c).includes(k)); return i < 0 ? 99 : i; };
 datos = datos.map((p, i) => ({ ...p, _i: i })).sort((a, b) => pesoCat(a.categoria) - pesoCat(b.categoria) || a._i - b._i);
-let cat = "Todos", q = "", max = 48;
+let cat = "Todos", q = "", max = 48, orden = "";
 
 function el(tag, cls, txt) {
   const e = document.createElement(tag);
@@ -107,9 +123,10 @@ function tarjeta(p) {
 }
 
 function render() {
-  const lista = datos.filter(p =>
+  let lista = datos.filter(p =>
     (cat === "Todos" || p.categoria === cat) &&
     (!q || norm([p.nombre, p.marca, p.categoria].join(" ")).includes(q)));
+  if (orden) lista = [...lista].sort((a, b) => orden === "asc" ? a.precio - b.precio : b.precio - a.precio);
   document.getElementById("grid").replaceChildren(...lista.slice(0, max).map(tarjeta));
   document.getElementById("mas").hidden = lista.length <= max;
   const v = document.getElementById("vacio");
@@ -120,19 +137,28 @@ function render() {
 }
 
 function chips() {
-  const cats = ["Todos", ...new Set(datos.map(p => p.categoria).filter(Boolean))].sort((a, b) =>
+  const cuenta = {};
+  datos.forEach(p => { if (p.categoria) cuenta[p.categoria] = (cuenta[p.categoria] || 0) + 1; });
+  const cats = ["Todos", ...Object.keys(cuenta)].sort((a, b) =>
     a === "Todos" ? -1 : b === "Todos" ? 1 : (pesoCat(a) - pesoCat(b)) || a.localeCompare(b));
   const box = document.getElementById("cats");
   box.replaceChildren(...cats.map(n => {
-    const b = el("button", "chip" + (n === cat ? " on" : ""), n);
-    b.onclick = () => { cat = n; max = 48; chips(); render(); };
+    const b = el("button", "cat" + (n === cat ? " on" : ""));
+    b.append(el("label", "", n), el("span", "", n === "Todos" ? datos.length : cuenta[n]));
+    b.onclick = () => {
+      cat = n; max = 48; chips(); render();
+      box.classList.remove("open");
+      document.getElementById("top").scrollIntoView({ behavior: "smooth", block: "start" });
+    };
     return b;
   }));
-  box.hidden = cats.length < 3;
+  document.querySelector("aside").hidden = cats.length < 3;
 }
 
 document.getElementById("q").oninput = e => { q = norm(e.target.value.trim()); max = 48; render(); };
 document.getElementById("mas").onclick = () => { max += 48; render(); };
+document.getElementById("orden").onchange = e => { orden = e.target.value; max = 48; render(); };
+document.getElementById("btnCats").onclick = () => document.getElementById("cats").classList.toggle("open");
 chips();
 render();
 </script>
