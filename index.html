@@ -57,10 +57,11 @@ footer a{color:#fff;font-weight:600}
 .bn{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.bn span{background:#fff;border:1px solid #bfe3cf;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--vo)}
 .dsc{font-size:12px;font-weight:600;color:var(--v);margin-top:-4px}
 .how{background:#fff;border:1px solid var(--b);border-radius:12px;padding:14px 18px;margin-top:22px}.how h2{margin:0 0 8px;font-size:17px}.how ol{margin:0;padding-left:20px;line-height:1.7}
+.home{margin-left:auto;color:#fff;font-weight:600;text-decoration:none;border:1px solid #fff;border-radius:999px;padding:6px 14px;font-size:14px}
 </style>
 </head>
 <body>
-<header><div class="hd"><div class="lg"><img src="logo.png" alt="SOPORTIA"></div><div><b>SOPORTIA</b><i>tu técnico, al toque</i></div></div></header>
+<header><div class="hd"><div class="lg"><img src="logo.png" alt="SOPORTIA"></div><div><b>SOPORTIA</b><i>tu técnico, al toque</i></div><a class="home" href="ventas/index.html">Inicio</a></div></header>
 <section class="hero"><h1>Tecnología con un técnico de confianza detrás</h1>
 <p>Laptops, redes, cámaras y accesorios. Te asesoramos antes de comprar y te ayudamos después.</p>
 <div class="bn"><span>Envíos a todo el Perú</span><span>Pregunta por tu descuento</span><span>7 días de garantía por escrito</span><span>Asesoría por WhatsApp</span></div></section>
@@ -69,7 +70,7 @@ footer a{color:#fff;font-weight:600}
 <aside><button id="btnCats" type="button">Categorías ▾</button><div id="cats"></div></aside>
 <div>
 <div id="top" class="bar"><input id="q" type="search" placeholder="Busca: cable, cargador, mouse, laptop…" aria-label="Buscar productos">
-<select id="orden" aria-label="Ordenar productos"><option value="">Más pedidos</option><option value="asc">Menor precio</option><option value="desc">Mayor precio</option></select></div>
+<select id="orden" aria-label="Ordenar productos"><option value="asc">Menor precio</option><option value="desc">Mayor precio</option></select></div>
 <div id="grid"></div>
 <div id="vacio" hidden></div>
 <button id="mas" hidden>Ver más productos</button>
@@ -89,7 +90,9 @@ const fmt = n => Number(n).toLocaleString("es-PE");
 const PRIORIDAD = ["mouse","audio","teclados","redes inalambricas","memorias flash","mochilas","discos duros externos","camaras","notebooks","impresoras","monitores","computadoras"];
 const pesoCat = c => { const i = PRIORIDAD.findIndex(k => norm(c).includes(k)); return i < 0 ? 99 : i; };
 datos = datos.map((p, i) => ({ ...p, _i: i })).sort((a, b) => pesoCat(a.categoria) - pesoCat(b.categoria) || a._i - b._i);
-let cat = "Todos", q = "", max = 48, orden = "";
+let cat = "Todos", q = "", max = 48, orden = "asc";
+const c0 = new URLSearchParams(location.search).get("c");
+if (c0) { const hit = datos.map(p => p.categoria).find(k => k && norm(k).includes(norm(c0))); if (hit) cat = hit; }
 
 function el(tag, cls, txt) {
   const e = document.createElement(tag);
@@ -146,7 +149,7 @@ function chips() {
     const b = el("button", "cat" + (n === cat ? " on" : ""));
     b.append(el("label", "", n), el("span", "", n === "Todos" ? datos.length : cuenta[n]));
     b.onclick = () => {
-      cat = n; max = 48; chips(); render();
+      cat = n; max = 48; orden = "asc"; document.getElementById("orden").value = "asc"; chips(); render();
       box.classList.remove("open");
       document.getElementById("top").scrollIntoView({ behavior: "smooth", block: "start" });
     };
@@ -161,6 +164,7 @@ document.getElementById("orden").onchange = e => { orden = e.target.value; max =
 document.getElementById("btnCats").onclick = () => document.getElementById("cats").classList.toggle("open");
 chips();
 render();
+if (c0 && cat !== "Todos") document.getElementById("top").scrollIntoView();
 </script>
 </body>
 </html>

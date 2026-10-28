@@ -1,0 +1,18 @@
+IMAGENES PARA LA WEB DE SOPORTIA (Canva > Crear una imagen / Magic Media)
+Guárdalas como JPG, comprímelas a menos de 150 KB (squoosh.app) y cópialas a C:\soportia-web\ventas con estos nombres exactos.
+Regla: son imágenes de ambiente. No las presentes como clientes reales ni como el producto que vendes.
+
+1) escena-estudio.jpg  (horizontal 16:9)
+Foto realista horizontal con luz natural cálida de ventana: una joven latina de unos 25 años trabaja tranquila en una laptop abierta, sobre un escritorio de madera ordenado junto a una ventana, con una planta, un cuaderno y una taza. Acentos verdes suaves, poca profundidad de campo, expresión relajada, pantalla no visible. Sin texto, sin logos ni marcas.
+
+2) escena-negocio.jpg  (horizontal 16:9)
+Foto realista horizontal con luz de día: mostrador de un pequeño negocio de barrio en Latinoamérica, un comerciante de unos 35 años sonriente usa una computadora de escritorio junto a una impresora compacta, estantes ordenados, detalles en verde, ambiente acogedor. Sin texto, sin logos ni marcas.
+
+3) escena-wifi.jpg  (horizontal 16:9)
+Foto realista horizontal de una sala luminosa en un hogar latinoamericano: una familia de tres usa un celular y una laptop, un pequeño router blanco discreto sobre un estante y una cámara de seguridad pequeña en una esquina del techo, plantas, luz cálida, sensación de calma y seguridad. Sin texto, sin logos ni marcas.
+
+4) portada-persona.jpg  (vertical 4:5)  [opcional: cámbiala por una foto tuya cuando la tengas]
+Retrato realista con luz natural cálida: un joven latinoamericano de unos 28 años, sonriente y seguro, con polo verde liso, sostiene una laptop y mira a la cámara; fondo de oficina moderna desenfocada con una planta; aire de técnico amable y de confianza. Sin texto, sin logos ni marcas.
+
+5) escena-accesorios.jpg  (horizontal 16:9)  [tarjeta "Accesorios y repuestos"]
+Foto realista horizontal con luz cálida: mesa de trabajo ordenada de un técnico de computadoras, con una laptop abierta y su tapa trasera retirada, destornilladores pequeños de precisión, cables bien ordenados, un disco SSD y una memoria RAM sobre una alfombrilla antiestática, detalles en verde, poca profundidad de campo. Sin texto, sin logos ni marcas.
